@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurveMaker - Professional Online Chart Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>Curve<span class="neon-text">Maker</span></h1>
+                <p class="subtitle">Professional Online Chart Maker with Live Preview</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container">
+                <h2 class="section-title">Create Your Visualization</h2>
+                
+                <form id="curveForm" class="curve-form">
+                    <div class="form-group">
+                        <label for="curveType" class="form-label">Curve Type</label>
+                        <select id="curveType" name="curveType" class="form-select" required>
+                            <option value="">Select a curve type...</option>
+                            <optgroup label="📈 Basic Charts">
+                                <option value="line">Line Chart</option>
+                                <option value="bar">Bar Chart</option>
+                                <option value="pie">Pie Chart</option>
+                                <option value="area">Area Chart</option>
+                            </optgroup>
+                            <optgroup label="🔄 Smooth Curves">
+                                <option value="spline">Spline Curve</option>
+                                <option value="bezier">Bezier Curve</option>
+                                <option value="lowess">LOWESS / LOESS</option>
+                                <option value="moving_average">Moving Average Curve</option>
+                            </optgroup>
+                            <optgroup label="📊 Mathematical Curves">
+                                <option value="polynomial">Polynomial Regression Curve</option>
+                                <option value="exponential">Exponential Curve</option>
+                                <option value="sigmoid">Sigmoid (Logistic) Curve</option>
+                                <option value="gompertz">Gompertz Curve</option>
+                            </optgroup>
+                            <optgroup label="📊 Area & Volume">
+                                <option value="stacked_area">Stacked Area Chart</option>
+                                <option value="streamgraph">Streamgraph</option>
+                                <option value="step">Step Chart</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chartTitle" class="form-label">Chart Title</label>
+                        <input type="text" id="chartTitle" name="chartTitle" class="form-input" placeholder="Enter chart title..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="xAxisLabel" class="form-label">X-Axis Label</label>
+                        <input type="text" id="xAxisLabel" name="xAxisLabel" class="form-input" placeholder="e.g., Year, Month, Category...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="yAxisLabel" class="form-label">Y-Axis Label</label>
+                        <input type="text" id="yAxisLabel" name="yAxisLabel" class="form-input" placeholder="e.g., Value, Count, Percentage...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dataInput" class="form-label">Data Input</label>
+                        <textarea id="dataInput" name="dataInput" class="form-textarea" placeholder="Enter your data in CSV format or JSON format..." required></textarea>
+                        <div class="data-format-help">
+                            <p><strong>Format Examples:</strong></p>
+                            <p>CSV: x1,y1;x2,y2;x3,y3</p>
+                            <p>JSON: {"series1": [1,2,3], "series2": [4,5,6]}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorScheme" class="form-label">Color Scheme</label>
+                        <select id="colorScheme" name="colorScheme" class="form-select">
+                            <option value="neon">Neon (Default)</option>
+                            <option value="ocean">Ocean Blue</option>
+                            <option value="sunset">Sunset</option>
+                            <option value="forest">Forest</option>
+                            <option value="monochrome">Monochrome</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gridStyle" class="form-label">Grid Style</label>
+                        <select id="gridStyle" name="gridStyle" class="form-select">
+                            <option value="neon">Neon Grid</option>
+                            <option value="subtle">Subtle</option>
+                            <option value="none">No Grid</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="showAxes" class="form-label">Show Axes</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showXAxis" name="showXAxis" checked>
+                                <span class="checkmark"></span>
+                                Show X-Axis
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showYAxis" name="showYAxis" checked>
+                                <span class="checkmark"></span>
+                                Show Y-Axis
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Generate Curve</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+            </div>
+
+            <div class="preview-container">
+                <h2 class="section-title">Preview</h2>
+                <div id="chartPreview" class="chart-preview">
+                    <div class="placeholder">
+                        <div class="placeholder-icon">📊</div>
+                        <p>Select a curve type and enter data to see a preview</p>
+                    </div>
+                </div>
+                
+                <div id="generatedChart" class="generated-chart" style="display: none;">
+                    <img id="chartImage" alt="Generated Chart" class="chart-image">
+                    <div class="chart-controls">
+                        <button id="downloadBtn" class="control-btn">Download PNG</button>
+                        <button id="downloadSVGBtn" class="control-btn">Download SVG</button>
+                        <button id="shareBtn" class="control-btn">Share</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="curve-info-panel">
+            <h3>Curve Information</h3>
+            <div id="curveDescription" class="curve-description">
+                Select a curve type to see detailed information about its use cases and characteristics.
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Ummay Mimona Chaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="background-effects">
+        <div class="floating-particles"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
