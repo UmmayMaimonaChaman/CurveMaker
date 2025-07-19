@@ -208,5 +208,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 **CurveMaker** - Transform your data into stunning visualizations! 🎨📊
+
 **Made by Ummay Maimona Chaman**
+
 If you encounter any issues or have suggestions to share, please feel free to let me know. 😊
