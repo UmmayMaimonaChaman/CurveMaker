@@ -2,6 +2,12 @@
 
 A professional web application for creating advanced data visualizations with live preview, inspired by LiveGap Charts. Generate beautiful charts and curves using Python's scientific computing libraries with an intuitive web interface.
 
+### 🔗 Project Links
+- **GitHub Repository:**  
+  https://github.com/UmmayMaimonaChaman/CurveMaker
+- **Live Website Demo:**  
+  https://ummaymaimonachaman.github.io/CurveMaker/
+
 ## ✨ Features
 
 ### 📊 Chart Types
